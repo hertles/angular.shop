@@ -1,0 +1,33 @@
+.product {
+  margin: 20px;
+  display: inline-block;
+
+  &__container {
+    width: 300px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  &__title {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__image-block {
+    height: 300px;
+    width: 300px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+  }
+
+  &__image {
+    height: 100%;
+    margin: 0 auto;
+  }
+}

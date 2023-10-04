@@ -12,7 +12,7 @@
       autocomplete="off"
       *ngFor="let input of inputs; let i = index; trackBy: trackByInputs"
       [(ngModel)]="inputs[i]"
-      (ngModelChange)="inputTyped($event,i)"
+      (ngModelChange)="inputTyped($event)"
       type="text"
       (change)="inputChanged($event)"
     >
