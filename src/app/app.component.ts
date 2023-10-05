@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit, TrackByFunction} from '@angular/core';
 import {DistanceUnit, Product} from "./core/types";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,18 @@ export class AppComponent implements OnInit, OnDestroy {
   fromValue: number = 0
   fromUnit: DistanceUnit = DistanceUnit.Meters
   toUnit: DistanceUnit = DistanceUnit.Miles
-  toValue: number = 0
+
+  chooseProduct(chosen: boolean, id: number) {
+    const product = this.products.find(product => product.id === id)
+    if (product) {
+      product.chosen = chosen
+    }
+  }
+
+  fetchedTodos = fetch('https://jsonplaceholder.typicode.com/todos')
+    .then(response => response.json())
+    .then(json => json)
+
   ngOnInit() {
     this.interval = setInterval(() => {
       this.date = new Date()
@@ -59,7 +71,8 @@ export class AppComponent implements OnInit, OnDestroy {
       rating: {
         rate: 3.6,
         count: 145
-      }
+      },
+      chosen: false
     },
     {
       id: 19,
@@ -71,7 +84,8 @@ export class AppComponent implements OnInit, OnDestroy {
       rating: {
         rate: 4.5,
         count: 146
-      }
+      },
+      chosen: false
     },
   ]
 }

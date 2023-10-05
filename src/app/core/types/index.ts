@@ -20,4 +20,5 @@ export interface Product {
     rate: number
     count: number
   }
+  chosen: boolean
 }

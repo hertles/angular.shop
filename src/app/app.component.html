@@ -2,7 +2,7 @@
   <img src="../assets/images/angular.svg" alt="">
   <div>
     <h1>Angular Sandbox</h1>
-    <p>Текущее время: <strong>{{date | date : 'HH:mm:ss'}}</strong></p>
+    <p>Дата: <strong>{{date | date : 'd MMMM YYYY, HH:mm:ss':undefined:'ru'}}</strong></p>
   </div>
 </header>
 <main>
@@ -15,12 +15,13 @@
     <select name="toUnit" id="toUnit" [(ngModel)]="toUnit">
       <option *ngFor="let unit of distanceUnitsArray" [value]="unit">{{unit}}</option>
     </select>
-    {{(fromValue || 0) + fromUnit}} = {{
-    (fromValue
-      | distance : fromUnit : toUnit
-      | number : '1.0-2')
-    + toUnit
-    }}
+    {{(fromValue || 0) + fromUnit}}
+     = {{fromValue | distance : fromUnit : toUnit : '1.0-3'}}
+<!--    <div *ngFor="let to_do of fetchedTodos | async">
+      <div *ngFor="let field of to_do | keyvalue">
+        <p><strong>{{field.key}}: </strong>{{field.value}}</p>
+      </div>
+    </div>-->
     <!--<input
       name="input"
       autocomplete="off"
@@ -42,6 +43,11 @@
     </ng-template>-->
   </div>
   <div>
-    <app-product *ngFor="let product of products; trackBy: trackByProducts" [product]="product"/>
+    <app-product
+      *ngFor="let product of products;
+      trackBy: trackByProducts"
+      [product]="product"
+      (choose)="chooseProduct($event,product.id)"
+    />
   </div>
 </main>

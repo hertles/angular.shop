@@ -24,10 +24,34 @@
     background-color: white;
     border-radius: 20px;
     display: flex;
+    filter: brightness(1);
   }
 
   &__image {
     height: 100%;
     margin: 0 auto;
+    transition: 0.1s ease-in;
+  }
+
+  &__chosen {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: firebrick;
+  }
+
+  &:hover {
+    .product {
+      &__image-block {
+        filter: brightness(0.9);
+      }
+      &__image {
+        transform: scale(0.9);
+      }
+    }
   }
 }

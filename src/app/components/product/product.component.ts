@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Product} from "../../core/types";
 
 @Component({
@@ -8,4 +8,8 @@ import {Product} from "../../core/types";
 })
 export class ProductComponent {
   @Input() product: Product
+  @Output() choose: EventEmitter<boolean> = new EventEmitter<boolean>()
+  chooseProduct() {
+    this.choose.emit(!this.product.chosen)
+  }
 }
