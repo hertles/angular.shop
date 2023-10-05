@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Product} from "../../app.component";
+import {Product} from "../../core/types";
 
 @Component({
   selector: 'app-product',

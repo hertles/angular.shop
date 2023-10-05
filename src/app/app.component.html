@@ -7,7 +7,21 @@
 </header>
 <main>
   <div class="sandbox">
-    <input
+    <input type="number" [(ngModel)]="fromValue">
+    <select name="fromUnit" id="fromUnit" [(ngModel)]="fromUnit">
+      <option *ngFor="let unit of distanceUnitsArray" [value]="unit">{{unit}}</option>
+    </select>
+    to
+    <select name="toUnit" id="toUnit" [(ngModel)]="toUnit">
+      <option *ngFor="let unit of distanceUnitsArray" [value]="unit">{{unit}}</option>
+    </select>
+    {{(fromValue || 0) + fromUnit}} = {{
+    (fromValue
+      | distance : fromUnit : toUnit
+      | number : '1.0-2')
+    + toUnit
+    }}
+    <!--<input
       name="input"
       autocomplete="off"
       *ngFor="let input of inputs; let i = index; trackBy: trackByInputs"
@@ -25,7 +39,7 @@
     </ng-container>
     <ng-template [ngIf]="true">
       <div [tooltip]="inputs[0]">{{(inputs[0] | slice:0:5 | uppercase) + (inputs[0] | slice:5 | lowercase)}}</div>
-    </ng-template>
+    </ng-template>-->
   </div>
   <div>
     <app-product *ngFor="let product of products; trackBy: trackByProducts" [product]="product"/>

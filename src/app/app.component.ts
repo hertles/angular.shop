@@ -1,40 +1,34 @@
 import {Component, OnDestroy, OnInit, TrackByFunction} from '@angular/core';
-
-export interface Product {
-  id: number
-  title: string
-  price: number
-  description: string
-  category: string
-  image: string
-  rating: {
-    rate: number
-    count: number
-  }
-}
+import {DistanceUnit, Product} from "./core/types";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy{
+export class AppComponent implements OnInit, OnDestroy {
   title = 'pet';
-  inputs = ["",""]
+  inputs = ["", ""]
   output = ""
   interval: ReturnType<typeof setInterval>
   date: Date = new Date()
+  distanceUnitsArray: DistanceUnit[] = Object.values(DistanceUnit)
+  fromValue: number = 0
+  fromUnit: DistanceUnit = DistanceUnit.Meters
+  toUnit: DistanceUnit = DistanceUnit.Miles
+  toValue: number = 0
   ngOnInit() {
-    this.interval = setInterval(()=>{
+    this.interval = setInterval(() => {
       this.date = new Date()
-    },1000)
+    }, 1000)
   }
+
   ngOnDestroy() {
     clearInterval(this.interval)
   }
 
   clearInput = () => {
-    this.inputs = ["",""]
+    this.inputs = ["", ""]
     this.output = ""
   }
   inputTyped = (newInput: string) => {
@@ -47,7 +41,7 @@ export class AppComponent implements OnInit, OnDestroy{
   inputChanged = (event: Event) => {
     if (event.target) {
       const target = event.target as HTMLInputElement
-      if (target.value==="123") {
+      if (target.value === "123") {
         this.output = " сохранено!!!!"
       }
     }

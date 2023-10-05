@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
 import {FormsModule} from "@angular/forms";
 import { TooltipDirective } from './directives/tooltip/tooltip.directive';
+import { DistancePipe } from './pipes/distance/distance.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
-    TooltipDirective
+    TooltipDirective,
+    DistancePipe
   ],
   imports: [
     BrowserModule,
