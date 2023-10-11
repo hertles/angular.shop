@@ -1,14 +1,3 @@
-export enum DistanceUnit {
-  Meters = 'm',
-  Kilometers = 'km',
-  Centimeters = 'cm',
-  Millimeters = 'mm',
-  Feet = 'ft',
-  Inches = 'in',
-  Miles = 'mi',
-  Yards = 'yd',
-}
-
 export interface Product {
   id: number
   title: string
@@ -20,5 +9,8 @@ export interface Product {
     rate: number
     count: number
   }
+}
+
+export interface ChosenProduct extends Product {
   chosen: boolean
 }

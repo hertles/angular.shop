@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {DistanceUnit} from "../../core/types";
+import {DistanceUnit} from "../../core/modules/distance";
 import {DecimalPipe} from "@angular/common";
 
 const metersInUnit = {
