@@ -6,9 +6,12 @@
       <p>Дата: <strong>{{date | date : 'd MMMM YYYY, HH:mm:ss':undefined:'ru'}}</strong></p>
     </div>
   </div>
-  <div class="header__rs" *ngIf="currentUser$ | async as currentUser">
-    <p>Вы вошли как <strong>{{currentUser.name}}</strong></p>
-    <p>Ваш список желаний включает в себя <strong>{{currentUser.preferences.size}}</strong> товар(-ов)</p>
+  <div class="header__rs">
+    <ng-container *ngIf="userLoading">Загрузка...</ng-container>
+    <ng-container *ngIf="currentUser$ | async as currentUser">
+      <p>Вы вошли как <strong>{{currentUser.name}}</strong></p>
+      <p>Ваш список желаний включает в себя <strong>{{currentUser.preferences.size}}</strong> товар(-ов)</p>
+    </ng-container>
   </div>
 </header>
 <main>
@@ -48,14 +51,13 @@
       <div [tooltip]="inputs[0]">{{(inputs[0] | slice:0:5 | uppercase) + (inputs[0] | slice:5 | lowercase)}}</div>
     </ng-template>-->
   </div>
-  <div>
-
-      <app-product
-        *ngFor="let product of products$ | async;
+  <div class="products">
+    <ng-container *ngIf="userLoading">Загрузка...</ng-container>
+    <app-product
+      *ngFor="let product of products$ | async;
         trackBy: trackByProducts"
-        [product]="product"
-        (choose)="chooseProduct(product.id)"
-      />
-
+      [product]="product"
+      (choose)="chooseProduct(product.id)"
+    />
   </div>
 </main>

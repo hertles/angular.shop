@@ -4,7 +4,7 @@ import {DistanceUnit} from "./core/modules/distance";
 import {ChosenProductService} from "./services/chosen-product/chosen-product.service";
 import {UserService} from "./services/user/user.service";
 import {User} from "./core/modules/user";
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -22,6 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
   public toUnit: DistanceUnit = DistanceUnit.Miles
   public products$: Observable<ChosenProduct[]>
   public currentUser$: Observable<User | undefined>
+  public productsLoading = true
+  public userLoading = true
 
   constructor(private productService: ChosenProductService, private userService: UserService) {
   }
@@ -35,8 +37,16 @@ export class AppComponent implements OnInit, OnDestroy {
     .then(json => json)
 
   ngOnInit() {
-    this.products$ = this.productService.getProducts()
-    this.currentUser$ = this.userService.getCurrentUser()
+    this.products$ = this.productService.getProducts().pipe(
+      tap(()=>{
+        this.productsLoading = false
+      })
+    )
+    this.currentUser$ = this.userService.getCurrentUser().pipe(
+      tap(()=>{
+        this.userLoading = false
+      })
+    )
     this.interval = setInterval(() => {
       this.date = new Date()
     }, 1000)
