@@ -6,9 +6,7 @@ import {ProductService} from "../product/product.service";
 @Injectable({
   providedIn: 'root',
   useFactory: (userService: UserService, productService: ProductService) => {
-    const users = userService.getUsers()
-    const currentUser = userService.getCurrentUser()
-    if (users && currentUser) {
+    if (userService.getCurrentUser()) {
       return {
         ...productService,
         getProducts(): ChosenProduct[] {
@@ -21,6 +19,7 @@ import {ProductService} from "../product/product.service";
         }
       }
     }
+
     return new ProductService
   },
   deps: [UserService, ProductService]
