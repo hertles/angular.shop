@@ -4,13 +4,17 @@ body {
 }
 
 header {
-  height: 10%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  height: 80px;
   width: 100%;
   padding: 10px;
   background-color: black;
   color: white;
   display: flex;
   justify-content: space-between;
+  z-index: 2;
 
   .header__ls {
     display: flex;
@@ -43,7 +47,7 @@ main {
   background-color: #f5f5f5;
   width: 80%;
   height: 90%;
-  margin: 0 auto;
+  margin: 80px auto 0;
   padding: 20px;
   font-size: 20px;
 }
@@ -59,3 +63,11 @@ main {
     min-height: 1em;
   }
 }
+  .products {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-items: center;
+    gap: 10px;
+  }
