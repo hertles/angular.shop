@@ -1,7 +1,4 @@
 import {Component, OnDestroy, OnInit, TrackByFunction} from '@angular/core';
-import {ChosenProduct} from "./core/modules/product";
-import {DistanceUnit} from "./core/modules/distance";
-import {ChosenProductService} from "./services/chosen-product/chosen-product.service";
 import {UserService} from "./services/user/user.service";
 import {User} from "./core/modules/user";
 import {Observable, tap} from "rxjs";
@@ -16,32 +13,17 @@ export class AppComponent implements OnInit, OnDestroy {
   public inputs = ["", ""]
   public output = ""
   public date: Date = new Date()
-  public distanceUnitsArray: DistanceUnit[] = Object.values(DistanceUnit)
-  public fromValue: number = 0
-  public fromUnit: DistanceUnit = DistanceUnit.Meters
-  public toUnit: DistanceUnit = DistanceUnit.Miles
-  public products$: Observable<ChosenProduct[]>
   public currentUser$: Observable<User | undefined>
-  public productsLoading = true
   public userLoading = true
-
-  constructor(private productService: ChosenProductService, private userService: UserService) {
-  }
-  chooseProduct(id: number) {
-    this.userService.togglePreference(id)
-    //this.products = this.productService.getProducts()
-  }
+  public navIsVisible = false
 
   fetchedTodos = fetch('https://jsonplaceholder.typicode.com/todos')
     .then(response => response.json())
     .then(json => json)
 
+  constructor(private userService: UserService) {
+  }
   ngOnInit() {
-    this.products$ = this.productService.getProducts().pipe(
-      tap(()=>{
-        this.productsLoading = false
-      })
-    )
     this.currentUser$ = this.userService.getCurrentUser().pipe(
       tap(()=>{
         this.userLoading = false
@@ -76,6 +58,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
   trackByInputs: TrackByFunction<string> = (index, _) => index
-  trackByProducts: TrackByFunction<ChosenProduct> = (_, item) => item.title
-
+  public setNavIsVisible() {
+    this.navIsVisible = !this.navIsVisible
+  }
 }

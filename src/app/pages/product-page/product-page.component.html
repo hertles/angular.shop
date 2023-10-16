@@ -1,0 +1,8 @@
+<ng-container *ngIf="productsLoading">Загрузка...</ng-container>
+<app-product
+  *ngFor="let product of products$ | async;
+        trackBy: trackByProducts"
+  [product]="product"
+  (choose)="chooseProduct(product.id)"
+/>
+

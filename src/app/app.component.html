@@ -1,6 +1,7 @@
 <header>
   <div class="header__ls">
-    <img src="../assets/images/angular.svg" alt="">
+    <img src="../assets/images/burger.svg" alt="Ещё опции" class="burger" (click)="setNavIsVisible()">
+    <img src="../assets/images/angular.svg" alt="Angular Sandbox">
     <div>
       <h1>Angular Sandbox</h1>
       <p>Дата: <strong>{{date | date : 'd MMMM YYYY, HH:mm:ss':undefined:'ru'}}</strong></p>
@@ -14,18 +15,16 @@
     </ng-container>
   </div>
 </header>
+<nav [ngClass]="{'visible': navIsVisible}">
+  <ul>
+    <li routerLink="products" routerLinkActive="active">Товары</li>
+    <li routerLink="distance" routerLinkActive="active">Калькулятор расстояний</li>
+    <li routerLink="inputs" routerLinkActive="active">Проверка инпутов</li>
+  </ul>
+</nav>
 <main>
   <div class="sandbox">
-    <input type="number" [(ngModel)]="fromValue">
-    <select name="fromUnit" id="fromUnit" [(ngModel)]="fromUnit">
-      <option *ngFor="let unit of distanceUnitsArray" [value]="unit">{{unit}}</option>
-    </select>
-    to
-    <select name="toUnit" id="toUnit" [(ngModel)]="toUnit">
-      <option *ngFor="let unit of distanceUnitsArray" [value]="unit">{{unit}}</option>
-    </select>
-    {{(fromValue || 0) + fromUnit}}
-    = {{fromValue | distance : fromUnit : toUnit : '1.0-3'}}
+
     <!--    <div *ngFor="let to_do of fetchedTodos | async">
           <div *ngFor="let field of to_do | keyvalue">
             <p><strong>{{field.key}}: </strong>{{field.value}}</p>
@@ -51,13 +50,5 @@
       <div [tooltip]="inputs[0]">{{(inputs[0] | slice:0:5 | uppercase) + (inputs[0] | slice:5 | lowercase)}}</div>
     </ng-template>-->
   </div>
-  <div class="products">
-    <ng-container *ngIf="userLoading">Загрузка...</ng-container>
-    <app-product
-      *ngFor="let product of products$ | async;
-        trackBy: trackByProducts"
-      [product]="product"
-      (choose)="chooseProduct(product.id)"
-    />
-  </div>
+  <router-outlet></router-outlet>
 </main>

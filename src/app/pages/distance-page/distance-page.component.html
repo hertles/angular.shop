@@ -1,0 +1,10 @@
+<input type="number" [(ngModel)]="fromValue">
+<select name="fromUnit" id="fromUnit" [(ngModel)]="fromUnit">
+  <option *ngFor="let unit of distanceUnitsArray" [value]="unit">{{unit}}</option>
+</select>
+to
+<select name="toUnit" id="toUnit" [(ngModel)]="toUnit">
+  <option *ngFor="let unit of distanceUnitsArray" [value]="unit">{{unit}}</option>
+</select>
+{{(fromValue || 0) + fromUnit}}
+= {{fromValue | distance : fromUnit : toUnit : '1.0-3'}}
