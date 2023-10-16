@@ -9,6 +9,7 @@ import { DistancePipe } from './pipes/distance/distance.pipe';
 
 import localeRU from '@angular/common/locales/ru'
 import {DecimalPipe, registerLocaleData} from "@angular/common";
+import {HttpClientModule} from "@angular/common/http";
 registerLocaleData(localeRU)
 
 @NgModule({
@@ -21,6 +22,7 @@ registerLocaleData(localeRU)
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [DecimalPipe],
   bootstrap: [AppComponent]

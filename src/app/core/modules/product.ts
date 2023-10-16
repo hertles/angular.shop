@@ -12,5 +12,5 @@ export interface Product {
 }
 
 export interface ChosenProduct extends Product {
-  chosen: boolean
+  chosen?: boolean
 }

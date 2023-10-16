@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {UserService} from "../user/user.service";
 import {ChosenProduct} from "../../core/modules/product";
 import {ProductService} from "../product/product.service";
+import {combineLatest, Observable, of, switchMap} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
@@ -9,23 +10,26 @@ import {ProductService} from "../product/product.service";
     if (userService.getCurrentUser()) {
       return {
         ...productService,
-        getProducts(): ChosenProduct[] {
-          const preferences = userService.getMyPreferences()
-          const products = productService.getProducts()
-          return products.map(product => ({
-            ...product,
-            chosen: preferences.has(product.id)
-          }))
+        getProducts(): Observable<ChosenProduct[]> {
+          return combineLatest([
+            productService.getProducts(),
+            userService.getCurrentUser(),
+          ]).pipe(
+            switchMap(([products, user]) => {
+              return of(products.map(product => ({
+                ...product,
+                chosen: user?.preferences.has(product.id)
+              })));
+            })
+          );
         }
       }
     }
 
-    return new ProductService
+    return productService
   },
   deps: [UserService, ProductService]
 })
 export class ChosenProductService extends ProductService{
-  constructor() {
-    super()
-  }
+
 }

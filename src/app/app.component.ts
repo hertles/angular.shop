@@ -4,6 +4,7 @@ import {DistanceUnit} from "./core/modules/distance";
 import {ChosenProductService} from "./services/chosen-product/chosen-product.service";
 import {UserService} from "./services/user/user.service";
 import {User} from "./core/modules/user";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -11,25 +12,22 @@ import {User} from "./core/modules/user";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'pet';
-  inputs = ["", ""]
-  output = ""
-  interval: ReturnType<typeof setInterval>
-  date: Date = new Date()
-  distanceUnitsArray: DistanceUnit[] = Object.values(DistanceUnit)
-  fromValue: number = 0
-  fromUnit: DistanceUnit = DistanceUnit.Meters
-  toUnit: DistanceUnit = DistanceUnit.Miles
-  products: ChosenProduct[] = []
-  currentUser: User | undefined
+  private interval: ReturnType<typeof setInterval>
+  public inputs = ["", ""]
+  public output = ""
+  public date: Date = new Date()
+  public distanceUnitsArray: DistanceUnit[] = Object.values(DistanceUnit)
+  public fromValue: number = 0
+  public fromUnit: DistanceUnit = DistanceUnit.Meters
+  public toUnit: DistanceUnit = DistanceUnit.Miles
+  public products$: Observable<ChosenProduct[]>
+  public currentUser$: Observable<User | undefined>
 
   constructor(private productService: ChosenProductService, private userService: UserService) {
-    this.products = productService.getProducts()
-    this.currentUser = userService.getCurrentUser()
   }
   chooseProduct(id: number) {
     this.userService.togglePreference(id)
-    this.products = this.productService.getProducts()
+    //this.products = this.productService.getProducts()
   }
 
   fetchedTodos = fetch('https://jsonplaceholder.typicode.com/todos')
@@ -37,6 +35,8 @@ export class AppComponent implements OnInit, OnDestroy {
     .then(json => json)
 
   ngOnInit() {
+    this.products$ = this.productService.getProducts()
+    this.currentUser$ = this.userService.getCurrentUser()
     this.interval = setInterval(() => {
       this.date = new Date()
     }, 1000)

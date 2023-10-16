@@ -6,7 +6,7 @@
       <p>Дата: <strong>{{date | date : 'd MMMM YYYY, HH:mm:ss':undefined:'ru'}}</strong></p>
     </div>
   </div>
-  <div class="header__rs" *ngIf="currentUser">
+  <div class="header__rs" *ngIf="currentUser$ | async as currentUser">
     <p>Вы вошли как <strong>{{currentUser.name}}</strong></p>
     <p>Ваш список желаний включает в себя <strong>{{currentUser.preferences.size}}</strong> товар(-ов)</p>
   </div>
@@ -49,11 +49,13 @@
     </ng-template>-->
   </div>
   <div>
-    <app-product
-      *ngFor="let product of products;
-      trackBy: trackByProducts"
-      [product]="product"
-      (choose)="chooseProduct(product.id)"
-    />
+
+      <app-product
+        *ngFor="let product of products$ | async;
+        trackBy: trackByProducts"
+        [product]="product"
+        (choose)="chooseProduct(product.id)"
+      />
+
   </div>
 </main>
