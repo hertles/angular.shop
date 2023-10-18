@@ -37,29 +37,60 @@
     transition: 0.1s ease-in;
   }
 
-  &__chosen {
+  &__choose {
     position: absolute;
     bottom: 0;
     right: 0;
     margin: 20px;
     padding: 10px 10px 5px;
     border-radius: 10px;
-    color: white;
-    background-color: firebrick;
+    transition: 0.1s;
 
     img {
       width: 30px;
+    }
+
+    &__chosen {
+      background-color: firebrick;
+      animation: downScale 0.4s;
+    }
+
+    &__not-chosen {
+      display: none;
+      background-color: black;
+    }
+
+    &:hover {
+      filter: brightness(0.9);
     }
   }
 
   &:hover {
     .product {
-      &__image-block {
-        filter: brightness(0.9);
-      }
       &__image {
-        transform: scale(0.9);
+        transform: scale(1.1);
+      }
+
+      &__choose {
+        &__not-chosen {
+          display: block;
+        }
       }
     }
+  }
+}
+
+@keyframes downScale {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  75% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
   }
 }

@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {UserService} from "../user/user.service";
-import {ChosenProduct} from "../../core/modules/product";
+import {ChosenProduct} from "../../models/product";
 import {ProductService} from "../product/product.service";
-import {combineLatest, Observable, of, switchMap} from "rxjs";
+import {combineLatest, map, Observable, of, switchMap} from "rxjs";
+import {User} from "../../models/user";
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +16,23 @@ import {combineLatest, Observable, of, switchMap} from "rxjs";
             productService.getProducts(),
             userService.getCurrentUser(),
           ]).pipe(
-            switchMap(([products, user]) => {
+            switchMap<[ChosenProduct[],User]>(([products, user]) => {
               return of(products.map(product => ({
                 ...product,
                 chosen: user?.preferences.has(product.id)
               })));
             })
           );
+        },
+        getProduct(id: number): Observable<ChosenProduct> {
+          return combineLatest([
+            productService.getProduct(id),
+            userService.getCurrentUser(),
+          ]).pipe(
+            map(([product, user]) => ({
+              ...product,
+              chosen: user?.preferences.has(product.id)
+            })));
         }
       }
     }
@@ -30,6 +41,12 @@ import {combineLatest, Observable, of, switchMap} from "rxjs";
   },
   deps: [UserService, ProductService]
 })
-export class ChosenProductService extends ProductService{
+export class ChosenProductService extends ProductService {
+  override getProducts(): Observable<ChosenProduct[]> {
+    return super.getProducts();
+  }
 
+  override getProduct(id: number): Observable<ChosenProduct> {
+    return super.getProduct(id);
+  }
 }

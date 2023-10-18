@@ -1,9 +1,11 @@
 <header>
   <div class="header__ls">
     <img src="../assets/images/burger.svg" alt="Ещё опции" class="burger" (click)="setNavIsVisible()">
-    <img src="../assets/images/angular.svg" alt="Angular Sandbox">
+    <a target="_blank" href="https://angular.io/guide/understanding-angular-overview">
+      <img src="../assets/images/angular.svg" alt="Angular Sandbox">
+    </a>
     <div>
-      <h1>Angular Sandbox</h1>
+      <h1 routerLink="/">Angular Sandbox</h1>
       <p>Дата: <strong>{{date | date : 'd MMMM YYYY, HH:mm:ss':undefined:'ru'}}</strong></p>
     </div>
   </div>
@@ -11,44 +13,24 @@
     <ng-container *ngIf="userLoading">Загрузка...</ng-container>
     <ng-container *ngIf="currentUser$ | async as currentUser">
       <p>Вы вошли как <strong>{{currentUser.name}}</strong></p>
-      <p>Ваш список желаний включает в себя <strong>{{currentUser.preferences.size}}</strong> товар(-ов)</p>
+      <p>{{currentUser.preferences.size}} <img [tooltip]="'Список желаемого'" class="preference-icon" src="../assets/images/heart-svgrepo-com.svg" alt="товаров в списке желаемого"></p>
     </ng-container>
   </div>
 </header>
 <nav [ngClass]="{'visible': navIsVisible}">
   <ul>
-    <li routerLink="products" routerLinkActive="active">Товары</li>
-    <li routerLink="distance" routerLinkActive="active">Калькулятор расстояний</li>
-    <li routerLink="inputs" routerLinkActive="active">Проверка инпутов</li>
+    <li
+      [routerLink]="['products']"
+      [routerLinkActiveOptions]="{exact: true}"
+      routerLinkActive="active"
+    >
+      Товары
+    </li>
+    <li [routerLink]="['profile']" routerLinkActive="active">Мой профиль</li>
+    <li [routerLink]="['distance']" routerLinkActive="active">Калькулятор расстояний</li>
+    <li [routerLink]="['todos']" routerLinkActive="active">TodoList API</li>
   </ul>
 </nav>
 <main>
-  <div class="sandbox">
-
-    <!--    <div *ngFor="let to_do of fetchedTodos | async">
-          <div *ngFor="let field of to_do | keyvalue">
-            <p><strong>{{field.key}}: </strong>{{field.value}}</p>
-          </div>
-        </div>-->
-    <!--<input
-      name="input"
-      autocomplete="off"
-      *ngFor="let input of inputs; let i = index; trackBy: trackByInputs"
-      [(ngModel)]="inputs[i]"
-      (ngModelChange)="inputTyped($event)"
-      type="text"
-      (change)="inputChanged($event)"
-    >
-    <button type="button" (click)="clearInput()">Очистить</button>
-    <ng-container *ngIf="inputs[1]!==''">
-      <div *ngIf="inputs[0]===inputs[1]; else errorBlock" class="successText">инпуты идентичны!</div>
-      <ng-template #errorBlock>
-        <div class="errorText">инпуты должны быть идентичны</div>
-      </ng-template>
-    </ng-container>
-    <ng-template [ngIf]="true">
-      <div [tooltip]="inputs[0]">{{(inputs[0] | slice:0:5 | uppercase) + (inputs[0] | slice:5 | lowercase)}}</div>
-    </ng-template>-->
-  </div>
   <router-outlet></router-outlet>
 </main>

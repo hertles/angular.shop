@@ -7,7 +7,7 @@ import {
   KeyValueDiffers,
   Output,
 } from '@angular/core';
-import {ChosenProduct} from "../../core/modules/product";
+import {ChosenProduct} from "../../models/product";
 
 @Component({
   selector: 'app-product',
@@ -25,7 +25,8 @@ export class ProductComponent implements DoCheck {
   ) {
   }
 
-  chooseProduct() {
+  chooseProduct(event: Event) {
+    event.stopPropagation()
     this.choose.emit(!this.product.chosen)
   }
 

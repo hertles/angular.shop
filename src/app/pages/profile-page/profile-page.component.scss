@@ -1,0 +1,9 @@
+@import '../../../assets/styles/mixins';
+
+.profile {
+  @include flex-column;
+
+  &__data {
+    @include flex-column;
+  }
+}

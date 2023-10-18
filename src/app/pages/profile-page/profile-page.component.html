@@ -1,0 +1,17 @@
+<section class="profile" *ngIf="user$ | async as user">
+  <h2>{{user.name}}</h2>
+  <article class="profile__data">
+    <h3>Мои данные</h3>
+    <p>Город: <strong>{{user.homeTown}}</strong></p>
+    <p>Почтовый индекс: <strong>{{user.postIndex}}</strong></p>
+    <button (click)="logout()">Выйти</button>
+  </article>
+  <article>
+    <h3>Мой список желаний</h3>
+    <app-product-list
+      [products]="products$ | async"
+      [productsError]="productsError"
+      [productsLoading]="productsLoading"
+    ></app-product-list>
+  </article>
+</section>

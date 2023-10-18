@@ -1,8 +1,22 @@
-<ng-container *ngIf="productsLoading">Загрузка...</ng-container>
-<app-product
-  *ngFor="let product of products$ | async;
-        trackBy: trackByProducts"
-  [product]="product"
-  (choose)="chooseProduct(product.id)"
-/>
+<p *ngIf="loading">Загрузка...</p>
+<section *ngIf="product$ | async as product" class="product">
+  <div class="product__image-block">
+    <img class="product__image" [src]="product.image" alt="Изображение товара">
+  </div>
+  <h2>{{product.title}}</h2>
+  <p>{{product.description}}</p>
+  <p>Категория: <strong>{{product.category}}</strong></p>
+  <p><strong>{{product.price | currency : 'EUR' : 'symbol'}}</strong></p>
+  <button *ngIf="product.chosen; else notChosen" class="product__choose product__choose__chosen" (click)="toggleChoose()">
+    <img src="assets/images/heart-svgrepo-com.svg" alt="(Heart)">
+    В списке желаемого
+  </button>
+  <ng-template #notChosen>
+    <button class="product__choose product__choose__not-chosen" (click)="toggleChoose()">
+    Добавить в список желаемого
+    </button>
+  </ng-template>
+  <p>Рейтинг: <strong>{{product.rating.rate}}</strong></p>
+  <p>Количество оценок: <strong>{{product.rating.count}}</strong></p>
 
+</section>

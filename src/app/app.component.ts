@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit, TrackByFunction} from '@angular/core';
 import {UserService} from "./services/user/user.service";
-import {User} from "./core/modules/user";
+import {User} from "./models/user";
 import {Observable, tap} from "rxjs";
 
 @Component({
@@ -16,10 +16,6 @@ export class AppComponent implements OnInit, OnDestroy {
   public currentUser$: Observable<User | undefined>
   public userLoading = true
   public navIsVisible = false
-
-  fetchedTodos = fetch('https://jsonplaceholder.typicode.com/todos')
-    .then(response => response.json())
-    .then(json => json)
 
   constructor(private userService: UserService) {
   }

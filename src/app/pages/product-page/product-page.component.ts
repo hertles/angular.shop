@@ -1,6 +1,7 @@
-import {Component, OnInit, TrackByFunction} from '@angular/core';
-import {Observable, tap} from "rxjs";
-import {ChosenProduct} from "../../core/modules/product";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {ChosenProduct} from "../../models/product";
+import {Observable, Subscription, tap} from "rxjs";
 import {ChosenProductService} from "../../services/chosen-product/chosen-product.service";
 import {UserService} from "../../services/user/user.service";
 
@@ -9,21 +10,31 @@ import {UserService} from "../../services/user/user.service";
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.scss']
 })
-export class ProductPageComponent implements OnInit {
-  public products$: Observable<ChosenProduct[]>
-  public productsLoading = true
-
-  constructor(private productService: ChosenProductService, public userService: UserService) {
+export class ProductPageComponent implements OnInit, OnDestroy {
+  public loading = true
+  public product$: Observable<ChosenProduct>
+  public subscription: Subscription
+  private id: number
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private productService: ChosenProductService,
+    private userService: UserService,
+  ) {
   }
   ngOnInit() {
-    this.products$ = this.productService.getProducts().pipe(
-      tap(()=>{
-        this.productsLoading = false
-      })
-    )
+    this.subscription = this.activatedRoute.params.subscribe(params=>{
+      this.id = Number(params["id"])
+      this.product$ = this.productService.getProduct(this.id).pipe(
+        tap(()=>{
+          this.loading = false
+        })
+      )
+    })
   }
-  public chooseProduct(id: number) {
-    this.userService.togglePreference(id)
+  ngOnDestroy() {
+    this.subscription.unsubscribe()
   }
-  public trackByProducts: TrackByFunction<ChosenProduct> = (_, item) => item.title
+  public toggleChoose() {
+    this.userService.togglePreference(this.id)
+  }
 }

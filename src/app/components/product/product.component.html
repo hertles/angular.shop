@@ -1,12 +1,19 @@
-<section class="product" (click)="chooseProduct()">
-  <div class="product__container">
+<section class="product">
+  <div class="product__container" [routerLink]="[product.id]">
     <div class="product__image-block">
       <img [src]="product.image" [alt]="product.title" class="product__image">
-      <div *ngIf="product.chosen" class="product__chosen">
+      <div
+        (click)="chooseProduct($event)"
+        [ngClass]="{
+           'product__choose': true,
+           'product__choose__chosen': product.chosen,
+           'product__choose__not-chosen': !product.chosen,
+        }"
+      >
         <img src="assets/images/heart-svgrepo-com.svg" alt="Добавлено">
       </div>
     </div>
     <strong class="product__title" [tooltip]="product.title">{{product.title}}</strong>
-    <div>Цена: <strong>{{product.price | currency : 'EUR' : 'symbol' }}</strong></div>
+    <div>Цена: <strong>{{product.price | currency : 'EUR' : 'symbol'}}</strong></div>
   </div>
 </section>
