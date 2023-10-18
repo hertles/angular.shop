@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../services/user/user.service";
+import {UserService} from "../../core/services/user/user.service";
 import {map, Observable, tap} from "rxjs";
-import {User} from "../../models/user";
-import {ChosenProduct} from "../../models/product";
-import {ChosenProductService} from "../../services/chosen-product/chosen-product.service";
+import {User} from "../../core/models/user";
+import {ChosenProduct} from "../../core/models/product";
+import {ChosenProductService} from "../../core/services/chosen-product/chosen-product.service";
 import {Router} from "@angular/router";
 
 @Component({

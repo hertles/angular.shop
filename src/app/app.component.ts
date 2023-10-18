@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit, TrackByFunction} from '@angular/core';
-import {UserService} from "./services/user/user.service";
-import {User} from "./models/user";
+import {UserService} from "./core/services/user/user.service";
+import {User} from "./core/models/user";
 import {Observable, tap} from "rxjs";
 
 @Component({

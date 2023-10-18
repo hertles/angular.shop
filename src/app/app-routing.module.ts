@@ -6,7 +6,7 @@ import {TodolistPageComponent} from "./pages/todolist-page/todolist-page.compone
 import {inject, NgModule} from "@angular/core";
 import {ProductPageComponent} from "./pages/product-page/product-page.component";
 import {ProfilePageComponent} from "./pages/profile-page/profile-page.component";
-import {UserService} from "./services/user/user.service";
+import {UserService} from "./core/services/user/user.service";
 import {map} from "rxjs";
 import {LoginPageComponent} from "./pages/login-page/login-page.component";
 

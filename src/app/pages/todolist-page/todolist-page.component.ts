@@ -1,6 +1,6 @@
 import {Component, OnInit, TrackByFunction} from '@angular/core';
-import {Todo} from "../../models/todo";
-import {TodoService} from "../../services/todo/todo.service";
+import {Todo} from "../../core/models/todo";
+import {TodoService} from "../../core/services/todo/todo.service";
 import {Observable} from "rxjs";
 
 @Component({

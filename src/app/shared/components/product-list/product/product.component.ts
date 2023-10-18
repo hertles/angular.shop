@@ -7,7 +7,7 @@ import {
   KeyValueDiffers,
   Output,
 } from '@angular/core';
-import {ChosenProduct} from "../../models/product";
+import {ChosenProduct} from "../../../../core/models/product";
 
 @Component({
   selector: 'app-product',

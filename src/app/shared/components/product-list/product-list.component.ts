@@ -1,6 +1,6 @@
 import {Component, Input, TrackByFunction} from '@angular/core';
-import {ChosenProduct} from "../../models/product";
-import {UserService} from "../../services/user/user.service";
+import {ChosenProduct} from "../../../core/models/product";
+import {UserService} from "../../../core/services/user/user.service";
 
 @Component({
   selector: 'app-product-list',

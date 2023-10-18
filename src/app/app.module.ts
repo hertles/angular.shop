@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
-import {ProductComponent} from './components/product/product.component';
+import {ProductComponent} from './shared/components/product-list/product/product.component';
 import {FormsModule} from "@angular/forms";
-import {TooltipDirective} from './directives/tooltip/tooltip.directive';
-import {DistancePipe} from './pipes/distance/distance.pipe';
+import {TooltipDirective} from './shared/directives/tooltip/tooltip.directive';
+import {DistancePipe} from './shared/pipes/distance/distance.pipe';
 import localeRU from '@angular/common/locales/ru'
 import {DecimalPipe, registerLocaleData} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
@@ -17,7 +17,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {ProductPageComponent} from './pages/product-page/product-page.component';
 import {ProfilePageComponent} from './pages/profile-page/profile-page.component';
 import {LoginPageComponent} from './pages/login-page/login-page.component';
-import {ProductListComponent} from './components/product-list/product-list.component';
+import {ProductListComponent} from './shared/components/product-list/product-list.component';
 
 registerLocaleData(localeRU)
 
