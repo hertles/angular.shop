@@ -18,6 +18,8 @@ import {ProductPageComponent} from './pages/product-page/product-page.component'
 import {ProfilePageComponent} from './pages/profile-page/profile-page.component';
 import {LoginPageComponent} from './pages/login-page/login-page.component';
 import {ProductListComponent} from './shared/components/product-list/product-list.component';
+import {HeaderComponent} from './layouts/header/header.component';
+import {NavBarComponent} from './layouts/navbar/nav-bar.component';
 
 registerLocaleData(localeRU)
 
@@ -34,16 +36,19 @@ registerLocaleData(localeRU)
     ProductPageComponent,
     ProfilePageComponent,
     LoginPageComponent,
-    ProductListComponent
+    ProductListComponent,
+    HeaderComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     RouterOutlet,
-    AppRoutingModule
+    AppRoutingModule,
+    DecimalPipe
   ],
-  providers: [DecimalPipe],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
