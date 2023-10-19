@@ -11,10 +11,10 @@ import {UserService} from "../../core/services/user/user.service";
   styleUrls: ['./product-page.component.scss']
 })
 export class ProductPageComponent implements OnInit, OnDestroy {
+  private id: number
   public loading = true
   public product$: Observable<ChosenProduct>
   public subscription: Subscription
-  private id: number
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ChosenProductService,

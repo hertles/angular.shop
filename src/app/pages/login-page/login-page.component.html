@@ -1,8 +1,10 @@
-<form class="login-form" (submit)="authorize($event)">
-  <label for="login">Логин</label>
-  <input id="login" type="text" [(ngModel)]="login" name="login">
-  <label for="password">Пароль</label>
-  <input id="password" type="password" [(ngModel)]="password" name="password">
-  {{error}}
-  <button type="submit">OK</button>
-</form>
+<section>
+  <form class="login-form" (submit)="authorize($event)">
+    <label for="login">Логин</label>
+    <input id="login" type="text" [(ngModel)]="login" name="login">
+    <label for="password">Пароль</label>
+    <input id="password" type="password" [(ngModel)]="password" name="password">
+    {{error}}
+    <button type="submit">OK</button>
+  </form>
+</section>

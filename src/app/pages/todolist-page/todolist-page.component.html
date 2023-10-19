@@ -1,8 +1,10 @@
-<h2>https://jsonplaceholder.typicode.com/todos</h2>
-<label for="limit"></label>
-<input id="limit" type="number" [(ngModel)]="limit">
-<div *ngFor="let todo of todos | async; trackBy:trackByTodoId">
-  <div *ngFor="let field of todo | keyvalue; trackBy:trackByFieldName">
-    <p><strong>{{field.key}}: </strong>{{field.value}}</p>
+<section class="todolist-page">
+  <h2>https://jsonplaceholder.typicode.com/todos</h2>
+  <label for="limit">Лимит записей</label>
+  <input id="limit" type="number" [(ngModel)]="limit" (blur)="onBlur()">
+  <div *ngFor="let todo of todos | async; trackBy:trackByTodoId" class="todo">
+    <div *ngFor="let field of todo | keyvalue; trackBy:trackByFieldName">
+      <p><strong>{{field.key}}: </strong>{{field.value}}</p>
+    </div>
   </div>
-</div>
+</section>

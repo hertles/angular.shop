@@ -8,9 +8,9 @@ import {Router} from "@angular/router";
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent {
+  public error: string
   public login: string
   public password: string
-  public error: string
 
   constructor(private userService: UserService, private router: Router) {
   }

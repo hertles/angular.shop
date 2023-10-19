@@ -1,0 +1,14 @@
+<nav [ngClass]="{'visible': navIsVisible}">
+  <ul>
+    <li
+      [routerLink]="['products']"
+      [routerLinkActiveOptions]="{exact: true}"
+      routerLinkActive="active"
+    >
+      Товары
+    </li>
+    <li [routerLink]="['profile']" routerLinkActive="active">Мой профиль</li>
+    <li [routerLink]="['distance']" routerLinkActive="active">Калькулятор расстояний</li>
+    <li [routerLink]="['todos']" routerLinkActive="active">TodoList API</li>
+  </ul>
+</nav>

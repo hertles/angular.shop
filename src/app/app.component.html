@@ -1,36 +1,5 @@
-<header>
-  <div class="header__ls">
-    <img src="../assets/images/burger.svg" alt="Ещё опции" class="burger" (click)="setNavIsVisible()">
-    <a target="_blank" href="https://angular.io/guide/understanding-angular-overview">
-      <img src="../assets/images/angular.svg" alt="Angular Sandbox">
-    </a>
-    <div>
-      <h1 routerLink="/">Angular Sandbox</h1>
-      <p>Дата: <strong>{{date | date : 'd MMMM YYYY, HH:mm:ss':undefined:'ru'}}</strong></p>
-    </div>
-  </div>
-  <div class="header__rs">
-    <ng-container *ngIf="userLoading">Загрузка...</ng-container>
-    <ng-container *ngIf="currentUser$ | async as currentUser">
-      <p>Вы вошли как <strong>{{currentUser.name}}</strong></p>
-      <p>{{currentUser.preferences.size}} <img [tooltip]="'Список желаемого'" class="preference-icon" src="../assets/images/heart-svgrepo-com.svg" alt="товаров в списке желаемого"></p>
-    </ng-container>
-  </div>
-</header>
-<nav [ngClass]="{'visible': navIsVisible}">
-  <ul>
-    <li
-      [routerLink]="['products']"
-      [routerLinkActiveOptions]="{exact: true}"
-      routerLinkActive="active"
-    >
-      Товары
-    </li>
-    <li [routerLink]="['profile']" routerLinkActive="active">Мой профиль</li>
-    <li [routerLink]="['distance']" routerLinkActive="active">Калькулятор расстояний</li>
-    <li [routerLink]="['todos']" routerLinkActive="active">TodoList API</li>
-  </ul>
-</nav>
+<app-header (toggleNavBar)="toggleNavVisibility()"></app-header>
+<app-navbar [navIsVisible]="navIsVisible"></app-navbar>
 <main>
   <router-outlet></router-outlet>
 </main>

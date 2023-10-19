@@ -13,13 +13,16 @@ import {Router} from "@angular/router";
 })
 export class ProfilePageComponent implements OnInit {
   public products$: Observable<ChosenProduct[]>
-  public user$: Observable<User | undefined>
-  public productsLoading: boolean = true
   public productsError: Error | null = null
-  constructor(private userService: UserService,
-              private productService: ChosenProductService,
-              private router: Router) {
+  public productsLoading: boolean = true
+  public user$: Observable<User | undefined>
+
+  constructor(
+    private productService: ChosenProductService,
+    private router: Router,
+    private userService: UserService) {
   }
+
   ngOnInit() {
     this.user$ = this.userService.getCurrentUser()
     this.products$ = this.productService.getProducts().pipe(
@@ -31,9 +34,10 @@ export class ProfilePageComponent implements OnInit {
           this.productsError = error
         }
       }),
-      map(products=>products.filter(product=>product.chosen === true))
+      map(products => products.filter(product => product.chosen === true))
     )
   }
+
   public logout() {
     this.userService.logout()
     this.router.navigate(['/login'])
