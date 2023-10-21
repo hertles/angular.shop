@@ -45,10 +45,9 @@ registerLocaleData(localeRU)
     FormsModule,
     HttpClientModule,
     RouterOutlet,
-    AppRoutingModule,
-    DecimalPipe
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [DecimalPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {

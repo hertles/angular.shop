@@ -3,47 +3,40 @@ import {UserService} from "../user/user.service";
 import {ChosenProduct} from "../../models/product";
 import {ProductService} from "../product/product.service";
 import {combineLatest, map, Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root',
-  useFactory: (userService: UserService, productService: ProductService) => {
-    const user = userService.getCurrentUser()
-    return {
-      ...productService,
-      getProducts(): Observable<ChosenProduct[]> {
-        return combineLatest([
-          productService.getProducts(),
-          user,
-        ]).pipe(
-          map(([products, user]) => {
-            return products.map(product => ({
-              ...product,
-              chosen: user?.preferences.has(product.id)
-            }));
-          })
-        );
-      },
-      getProduct(id: number): Observable<ChosenProduct> {
-        return combineLatest([
-          productService.getProduct(id),
-          user,
-        ]).pipe(
-          map(([product, user]) => ({
-            ...product,
-            chosen: user?.preferences.has(product.id)
-          }))
-        );
-      }
-    }
-  },
-  deps: [UserService, ProductService]
 })
 export class ChosenProductService extends ProductService {
+  constructor(private userService: UserService, http: HttpClient) {
+    super(http)
+  }
   override getProducts(): Observable<ChosenProduct[]> {
-    return super.getProducts();
+    const user = this.userService.getCurrentUser()
+    return combineLatest([
+      super.getProducts(),
+      user,
+    ]).pipe(
+      map(([products, user]) => {
+        return products.map(product => ({
+          ...product,
+          chosen: user?.preferences.has(product.id)
+        }));
+      })
+    );
   }
 
   override getProduct(id: number): Observable<ChosenProduct> {
-    return super.getProduct(id);
+    const user = this.userService.getCurrentUser()
+    return combineLatest([
+      super.getProduct(id),
+      user,
+    ]).pipe(
+      map(([product, user]) => ({
+        ...product,
+        chosen: user?.preferences.has(product.id)
+      }))
+    );
   }
 }

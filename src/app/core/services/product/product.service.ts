@@ -7,12 +7,12 @@ import {Observable} from "rxjs";
   providedIn: 'root',
 })
 export class ProductService {
-  constructor(private httpClient: HttpClient) {
+  constructor(private http: HttpClient) {
   }
   getProducts(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>('https://fakestoreapi.com/products')
+    return this.http.get<Product[]>('https://fakestoreapi.com/products')
   }
   getProduct(id: number): Observable<Product> {
-    return this.httpClient.get<Product>(`https://fakestoreapi.com/products/${id}`)
+    return this.http.get<Product>(`https://fakestoreapi.com/products/${id}`)
   }
 }

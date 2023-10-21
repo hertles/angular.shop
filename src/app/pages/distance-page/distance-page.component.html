@@ -1,3 +1,4 @@
+<section class="distance-page">
 <input type="number" [(ngModel)]="fromValue">
 <select name="fromUnit" id="fromUnit" [(ngModel)]="fromUnit">
   <option *ngFor="let unit of distanceUnitsArray" [value]="unit">{{unit}}</option>
@@ -8,3 +9,4 @@ to
 </select>
 {{(fromValue || 0) + fromUnit}}
 = {{fromValue | distance : fromUnit : toUnit : '1.0-3'}}
+</section>
