@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {ChosenProduct} from "../../core/models/product";
+import {ChosenProduct} from "@models/product";
 import {Observable, Subscription, tap} from "rxjs";
-import {ChosenProductService} from "../../core/services/chosen-product/chosen-product.service";
-import {UserService} from "../../core/services/user/user.service";
+import {ChosenProductService} from "@services/chosen-product/chosen-product.service";
+import {UserService} from "@services/user/user.service";
 
 @Component({
   selector: 'app-product-page',

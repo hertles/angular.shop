@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {UserService} from "../user/user.service";
-import {ChosenProduct} from "../../models/product";
+import {ChosenProduct} from "@models/product";
 import {ProductService} from "../product/product.service";
 import {combineLatest, map, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
@@ -18,12 +18,11 @@ export class ChosenProductService extends ProductService {
       super.getProducts(),
       user,
     ]).pipe(
-      map(([products, user]) => {
-        return products.map(product => ({
+      map(([products, user]) => products.map(product => ({
           ...product,
           chosen: user?.preferences.has(product.id)
-        }));
-      })
+        }))
+      )
     );
   }
 

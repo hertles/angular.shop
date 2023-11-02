@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable, tap} from "rxjs";
-import {ChosenProduct} from "../../core/models/product";
-import {ChosenProductService} from "../../core/services/chosen-product/chosen-product.service";
+import {ChosenProduct} from "@models/product";
+import {ChosenProductService} from "@services/chosen-product/chosen-product.service";
 
 @Component({
   selector: 'app-product-page',

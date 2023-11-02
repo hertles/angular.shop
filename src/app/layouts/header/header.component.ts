@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {Observable, tap} from "rxjs";
-import {User} from "../../core/models/user";
-import {UserService} from "../../core/services/user/user.service";
+import {User} from "@models/user";
+import {UserService} from "@services/user/user.service";
 
 @Component({
   selector: 'app-header',
