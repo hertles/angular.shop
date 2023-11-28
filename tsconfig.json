@@ -26,6 +26,7 @@
     "paths": {
       "@assets/*": ["./src/assets/*"],
       "@pages/*": ["./src/app/pages/*"],
+      "@modules/*": ["./src/app/modules/*"],
       "@directives/*": ["./src/app/shared/directives/*"],
       "@pipes/*": ["./src/app/shared/pipes/*"],
       "@models/*": ["./src/app/core/models/*"],

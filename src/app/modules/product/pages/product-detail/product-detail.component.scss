@@ -1,0 +1,40 @@
+@import '../../../../../assets/styles/mixins';
+
+.product {
+  @include flex-column;
+
+  &__image-block {
+    height: 500px;
+    width: 500px;
+    background-color: white;
+    display: flex;
+    border-radius: 20px;
+    padding: 20px;
+    user-select: none;
+  }
+
+  &__image {
+    object-fit: contain;
+    max-height: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  &__choose {
+    height: 50px;
+
+    &__chosen {
+      background-color: firebrick;
+
+      img {
+        display: inline;
+        width: 20px;
+        transform: translate(0,3px);
+      }
+    }
+
+    &__not-chosen {
+      background-color: black;
+    }
+  }
+}

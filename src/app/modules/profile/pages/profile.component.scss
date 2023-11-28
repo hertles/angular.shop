@@ -1,0 +1,10 @@
+@import '../../../../assets/styles/mixins';
+
+.profile {
+  @include flex-column;
+  align-items: normal;
+
+  &__data {
+    @include flex-column;
+  }
+}

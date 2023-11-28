@@ -1,0 +1,11 @@
+<ng-container *ngIf="productsLoading">Загрузка...</ng-container>
+<ng-container *ngIf="productsError">Ошибка загрузки данных: {{productsError.message}}</ng-container>
+<p *ngIf="!productsLoading && !productsError && !products?.length">
+  Нет товаров
+</p>
+<app-product
+  *ngFor="let product of products;
+        trackBy: trackByProducts"
+  [product]="product"
+  (choose)="chooseProduct(product.id)"
+></app-product>

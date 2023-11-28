@@ -1,41 +1,38 @@
-import {Router, RouterModule, Routes} from "@angular/router";
-import {MainPageComponent} from "@pages/main-page/main-page.component";
-import {DistancePageComponent} from "@pages/distance-page/distance-page.component";
-import {ErrorPageComponent} from "@pages/error-page/error-page.component";
-import {TodolistPageComponent} from "@pages/todolist-page/todolist-page.component";
-import {inject, NgModule} from "@angular/core";
-import {ProductPageComponent} from "@pages/product-page/product-page.component";
-import {ProfilePageComponent} from "@pages/profile-page/profile-page.component";
-import {UserService} from "@services/user/user.service";
-import {map} from "rxjs";
-import {LoginPageComponent} from "@pages/login-page/login-page.component";
+import {RouterModule, Routes} from "@angular/router";
+import {NgModule} from "@angular/core";
 
 export const appRoutes: Routes = [
-  {path: "", pathMatch: 'full', redirectTo: "products"},
-  {path: "products", component: MainPageComponent, title: "Товары"},
+  {
+    path: "",
+    pathMatch: 'full',
+    redirectTo: "products"
+  },
+  {
+    path: "products",
+    title: "Товары",
+    loadChildren: () => import('@modules/product/products.module').then(m => m.ProductsModule)
+  },
   {
     path: "profile",
-    component: ProfilePageComponent,
     title: "Мой профиль",
-    canActivate: [() => {
-      const userService = inject(UserService)
-      const router = inject(Router)
-      return userService.getCurrentUser().pipe(
-        map(user => {
-          if (user) {
-            return true
-          } else {
-            return router.createUrlTree(['/login'])
-          }
-        })
-      )
-    }]
+    loadChildren: () => import('@modules/profile/profile.module').then(m => m.ProfileModule)
   },
-  {path: "products/:id", component: ProductPageComponent, title: "Страница товара"},
-  {path: "distance", component: DistancePageComponent, title: "Калькулятор расстояний"},
-  {path: "todos", component: TodolistPageComponent, title: "TodoList API"},
-  {path: "login", component: LoginPageComponent, title: "Авторизация"},
-  {path: "**", component: ErrorPageComponent, title: "Ошибка"},
+  {
+    path: "distance",
+    title: "Калькулятор расстояний",
+    loadChildren: () => import('@modules/distance/distance.module').then(m => m.DistanceModule)
+  },
+  {
+    path: "todos",
+    title: "TodoList API",
+    loadChildren: () => import('@modules/todolist/todolist.module').then(m => m.TodolistModule)
+
+  },
+  {
+    path: "**",
+    title: "Ошибка",
+    loadChildren: () => import('@modules/error/error.module').then(m => m.ErrorModule)
+  },
 ]
 
 @NgModule({
