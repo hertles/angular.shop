@@ -5,8 +5,9 @@
   @include flex-column;
 
   &__image-block {
-    height: 500px;
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 500px;
     background-color: white;
     display: flex;
     border-radius: 20px;
@@ -22,7 +23,7 @@
   }
 
   &__choose {
-    height: 50px;
+    min-height: 50px;
 
     &__chosen {
       background-color: firebrick;

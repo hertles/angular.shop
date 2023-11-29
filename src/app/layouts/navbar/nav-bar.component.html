@@ -1,4 +1,4 @@
-<nav [ngClass]="{'visible': navIsVisible}">
+<nav [ngClass]="{'visible': navIsVisible}" (click)="onNavButtonClick()">
   <ul>
     <li
       [routerLink]="['products']"

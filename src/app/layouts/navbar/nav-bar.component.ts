@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +8,9 @@ import {Component, Input} from '@angular/core';
 export class NavBarComponent {
   @Input() public navIsVisible = false
 
-  public setNavIsVisible() {
-    this.navIsVisible = !this.navIsVisible
+  @Output() public hideNav: EventEmitter<null> = new EventEmitter<null>()
+
+  public onNavButtonClick() {
+    this.hideNav.emit()
   }
 }

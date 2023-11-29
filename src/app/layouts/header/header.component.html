@@ -12,8 +12,14 @@
   <div class="header__rs">
     <ng-container *ngIf="userLoading">Загрузка...</ng-container>
     <ng-container *ngIf="currentUser$ | async as currentUser">
-      <p>Вы вошли как <strong>{{currentUser.name}}</strong></p>
-      <p>{{currentUser.preferences.size}} <img [tooltip]="'Список желаемого'" class="preference-icon" src="./assets/images/heart-svgrepo-com.svg" alt="товаров в списке желаемого"></p>
+      <div class="header__profile" [routerLink]="['/profile']">
+        <p><strong>{{currentUser.name}}</strong></p>
+        <p>{{currentUser.preferences.size}}
+          <img [tooltip]="'Список желаемого'" class="preference-icon"
+               src="./assets/images/heart-svgrepo-com.svg"
+               alt="товаров в списке желаемого">
+        </p>
+      </div>
     </ng-container>
   </div>
 </header>

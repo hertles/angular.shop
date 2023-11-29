@@ -1,5 +1,5 @@
 <app-header (toggleNavBar)="toggleNavVisibility()"></app-header>
-<app-navbar [navIsVisible]="navIsVisible"></app-navbar>
+<app-navbar [navIsVisible]="navIsVisible" (hideNav)="toggleNavVisibility()"></app-navbar>
 <main>
   <router-outlet></router-outlet>
 </main>

@@ -13,7 +13,7 @@ export class UserService {
       password: '111',
       name: 'Marik',
       homeTown: 'St Petersburg',
-      postIndex: 191186,
+      postIndex: 202020,
       preferences: new Set([8, 9, 10, 20])
     },
     {
