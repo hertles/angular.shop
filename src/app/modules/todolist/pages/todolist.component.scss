@@ -2,4 +2,15 @@
 
 .todolist-page {
   @include flex-column();
+
+  & h2 a {
+    word-wrap: break-word;
+    white-space: normal;
+    width: 100%;
+    text-decoration: none;
+  }
+
+  &__validation-error {
+    color: firebrick;
+  }
 }
