@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "@services/user/user.service";
 import {map, Observable, tap} from "rxjs";
-import {User} from "@models/user";
-import {ChosenProduct} from "@models/product";
+import {UserModel} from "@models/user.model";
+import {ChosenProduct} from "@models/product.model";
 import {ChosenProductService} from "@services/chosen-product/chosen-product.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   public products$: Observable<ChosenProduct[]>
   public productsError: Error | null = null
   public productsLoading: boolean = true
-  public user$: Observable<User | undefined>
+  public user$: Observable<UserModel | undefined>
 
   constructor(
     private activatedRoute: ActivatedRoute,

@@ -1,4 +1,4 @@
-export interface Product {
+export interface ProductModel {
   id: number
   title: string
   price: number
@@ -11,6 +11,6 @@ export interface Product {
   }
 }
 
-export interface ChosenProduct extends Product {
+export interface ChosenProduct extends ProductModel {
   chosen?: boolean
 }

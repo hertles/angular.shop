@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {debounceTime, Observable} from "rxjs";
-import {Todo} from "@models/todo";
+import {TodoModel} from "@models/todo.model";
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,8 @@ import {Todo} from "@models/todo";
 export class TodoService {
 
   constructor(private http: HttpClient) { }
-  getTodos(limit: number): Observable<Todo[]> {
-    return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos', {
+  getTodos(limit: number): Observable<TodoModel[]> {
+    return this.http.get<TodoModel[]>('https://jsonplaceholder.typicode.com/todos', {
       params: {_limit: limit}
     }).pipe(debounceTime(1000))
   }

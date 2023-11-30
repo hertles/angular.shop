@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DistanceUnit } from "@models/distance";
+import { DistanceUnit } from "@models/distance.model";
 
 @Component({
   selector: 'app-distance',

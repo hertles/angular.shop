@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
-import {User} from "@models/user";
+import {UserModel} from "@models/user.model";
 import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private users: User[] = [
+  private users: UserModel[] = [
     {
       id: 1,
       login: '111',
@@ -45,13 +45,13 @@ export class UserService {
     }
   ]
   private currentUserId: number | null = 1
-  private currentUserSubject: BehaviorSubject<User | undefined> = new BehaviorSubject<User | undefined>(undefined)
+  private currentUserSubject: BehaviorSubject<UserModel | undefined> = new BehaviorSubject<UserModel | undefined>(undefined)
 
   constructor() {
     this.currentUserSubject.next(this.users.find(user => user.id === this.currentUserId))
   }
 
-  public getCurrentUser(): Observable<User | undefined> {
+  public getCurrentUser(): Observable<UserModel | undefined> {
     return this.currentUserSubject
   }
 

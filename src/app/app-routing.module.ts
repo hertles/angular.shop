@@ -26,7 +26,11 @@ export const appRoutes: Routes = [
     path: "todos",
     title: "TodoList API",
     loadChildren: () => import('@modules/todolist/todolist.module').then(m => m.TodolistModule)
-
+  },
+  {
+    path: "constants",
+    title: "Собачий приют",
+    loadChildren: () => import('@modules/dogs/dogs.module').then(m => m.DogsModule)
   },
   {
     path: "**",

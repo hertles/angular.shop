@@ -1,5 +1,5 @@
 import {Component, Input, TrackByFunction} from '@angular/core';
-import {ChosenProduct} from "@models/product";
+import {ChosenProduct} from "@models/product.model";
 import {UserService} from "@services/user/user.service";
 
 @Component({

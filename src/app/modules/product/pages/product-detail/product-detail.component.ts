@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {ChosenProduct} from "@models/product";
+import {ChosenProduct} from "@models/product.model";
 import {Observable, Subscription, tap} from "rxjs";
 import {ChosenProductService} from "@services/chosen-product/chosen-product.service";
 import {UserService} from "@services/user/user.service";

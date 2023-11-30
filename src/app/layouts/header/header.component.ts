@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {Observable, tap} from "rxjs";
-import {User} from "@models/user";
+import {UserModel} from "@models/user.model";
 import {UserService} from "@services/user/user.service";
 
 @Component({
@@ -10,7 +10,7 @@ import {UserService} from "@services/user/user.service";
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   @Output() toggleNavBar: EventEmitter<null> = new EventEmitter<null>()
-  public currentUser$: Observable<User | undefined>
+  public currentUser$: Observable<UserModel | undefined>
   public date: Date = new Date()
   public userLoading = true
   private interval: ReturnType<typeof setInterval>

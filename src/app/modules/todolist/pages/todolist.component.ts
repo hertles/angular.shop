@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, TrackByFunction, ViewChild} from '@angular/core';
-import {Todo} from "@models/todo";
+import {TodoModel} from "@models/todo.model";
 import {TodoService} from "@services/todo/todo.service";
 import {debounceTime, fromEvent, Observable, Subscription, switchMap, tap} from "rxjs";
 
@@ -11,7 +11,7 @@ import {debounceTime, fromEvent, Observable, Subscription, switchMap, tap} from 
 export class TodolistComponent implements AfterViewInit, OnDestroy {
   @ViewChild('limitInput') limitInput: ElementRef<HTMLInputElement>
   public limit: number = 20
-  public todos: Todo[]
+  public todos: TodoModel[]
   private subscriptions: Subscription[] = [];
   constructor(private todoService: TodoService) {
   }
@@ -40,13 +40,13 @@ export class TodolistComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.forEach(sub=>sub.unsubscribe());
   }
-  public trackByFieldName: TrackByFunction<Todo> = (_,item) => {
+  public trackByFieldName: TrackByFunction<TodoModel> = (_, item) => {
     return item.id
   }
-  public trackByTodoId: TrackByFunction<Todo> = (_,item) => {
+  public trackByTodoId: TrackByFunction<TodoModel> = (_, item) => {
     return item.id
   }
-  private getTodos(limit: number): Observable<Todo[]> {
+  private getTodos(limit: number): Observable<TodoModel[]> {
     return this.todoService.getTodos(limit)
   }
 }

@@ -10,7 +10,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {HeaderComponent} from './layouts/header/header.component';
 import {NavBarComponent} from './layouts/navbar/nav-bar.component';
 import {MainSharedModule} from "./shared/modules/main/main-shared.module";
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 registerLocaleData(localeRU)
 
 @NgModule({
@@ -21,11 +21,13 @@ registerLocaleData(localeRU)
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     RouterOutlet,
     MainSharedModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [DecimalPipe],
   bootstrap: [AppComponent]

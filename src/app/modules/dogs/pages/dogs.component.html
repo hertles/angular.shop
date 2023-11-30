@@ -1,0 +1,12 @@
+<h1>Собачий приют</h1>
+<p>Возьмите себе пушистого верного друга</p>
+<mat-form-field appearance="outline">
+  <mat-label>Породы собак</mat-label>
+  <mat-select multiple #breedSelect>
+    <ng-container *ngIf="breeds$ | async as breeds">
+      <mat-option [value]="breed.key" *ngFor="let breed of breeds.message | keyvalue">
+        {{breed.key}}
+      </mat-option>
+    </ng-container>
+  </mat-select>
+</mat-form-field>

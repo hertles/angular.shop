@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {UserService} from "../user/user.service";
-import {ChosenProduct} from "@models/product";
+import {ChosenProduct} from "@models/product.model";
 import {ProductService} from "../product/product.service";
 import {combineLatest, map, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
